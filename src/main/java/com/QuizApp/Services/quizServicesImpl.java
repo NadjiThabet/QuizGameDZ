@@ -469,7 +469,7 @@ public class quizServicesImpl implements IQuizServices{
 				return  userCoins;
 			}else {
 				System.out.println("getUserCoins -> document does't exist ...");
-				return 0;
+				return -2;
 			}
 			
 		}catch(Exception e) {
@@ -479,17 +479,17 @@ public class quizServicesImpl implements IQuizServices{
 	}
 
 	// new
-	public boolean setUserCoins(String userID, int coins) {
+	public boolean setUserCoins(String userID, int awardedCoins) {
 		int actualCoins=getUserCoins(userID);
 		try {
 			Firestore firestore = FirestoreClient.getFirestore(); // must be in a function
 			DocumentReference documentReference=firestore.collection(userCollection).document(userID);
-			if(coins>0) { // -> its mean that i will add new coins 
-				documentReference.update("coins",actualCoins+coins); 
+			if(awardedCoins>0) { // -> its mean that i will add new coins 
+				documentReference.update("coins",actualCoins+awardedCoins); 
 				return true;	
 			}else { // -> its mean that i will reduce the number of coins
 				if(actualCoins>=3) {
-					documentReference.update("coins",actualCoins+coins); 
+					documentReference.update("coins",actualCoins+awardedCoins); 
 					return true;
 				}else {
 					System.out.println("number of coins less than 3");
