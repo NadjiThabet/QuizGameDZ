@@ -18,6 +18,7 @@ import com.QuizApp.Services.IQuizServices;
 
 //@CrossOrigin(origins = "https://myeduappse.web.app")
 @CrossOrigin(origins = "http://localhost:4200")//https://myeduappse.web.app/
+@CrossOrigin(origins = "hhttps://quizgamedz-production.up.railway.app/")
 @RestController
 public class quizController {
 	
